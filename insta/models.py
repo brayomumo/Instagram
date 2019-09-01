@@ -39,6 +39,4 @@ class Comment(models.Model):
     class Meta:
         verbose_name = "comments"
         verbose_name_plural = "comments"
-
-    class Meta:
         ordering = ['-date']        
