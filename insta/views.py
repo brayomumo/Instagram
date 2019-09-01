@@ -86,7 +86,7 @@ def timeline(request):
     images = Image.objects.order_by('-pub_date')
     profiles = Profile.objects.order_by('-last_update')
     comment = Comment.objects.order_by('-date')
-    return render(request, 'timeline.html', {"images":images, "profiles":profiles, "user_profile":user_profile, "comment":comment})
+    return render(request, 'index.html', {"images":images, "profiles":profiles, "user_profile":user_profile, "comment":comment})
 
 
 @login_required(login_url='/accounts/login/')
