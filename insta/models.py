@@ -28,3 +28,10 @@ class Image(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
+
+
+class Comment(models.Model):
+    comment = models.CharField(null = True, max_length= 5000, verbose_name = 'name')
+    date = models.DateTimeField(auto_now_add=True, null=True)
+    user = models.ForeignKey(User, null=True)
+    image = models.ForeignKey(Image, null= True)
