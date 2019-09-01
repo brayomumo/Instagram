@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
+from .forms import SignUpForm,NewCommentForm,NewStatusForm
 from .models import Image,Profile,Comment
 
 # Create your views here.
@@ -87,3 +87,19 @@ def timeline(request):
     profiles = Profile.objects.order_by('-last_update')
     comment = Comment.objects.order_by('-date')
     return render(request, 'timeline.html', {"images":images, "profiles":profiles, "user_profile":user_profile, "comment":comment})
+
+
+@login_required(login_url='/accounts/login/')
+def new_status(request, username):
+    current_user = request.user
+    username = current_user.username
+    if request.method =='POST':
+        form = NewStatusForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save()
+            image.user = request.user
+            image.save()
+        return redirect('allTimelines')
+    else:
+        form = NewStatusForm()
+    return render(request, 'new_status.html', {"form":form}) 

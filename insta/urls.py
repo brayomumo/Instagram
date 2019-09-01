@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^user/(\d+)', views.user_profile, name='userProfile'),
     url(r'^image/(\d+)', views.single_post, name='singleImage'),
     url(r'^single_image/likes/(\d+)', views.single_image_like, name="singleImageLike"),
-
+    url(r'^new/status/(?P<username>[-_\w.]+)/$', views.new_status, name="new_status"),
       # url(r'^login/$', views.login, name='login'),
     # url(r'^logout/$', views.logout, name='logout'),
 ]
