@@ -57,3 +57,9 @@ class Comment(models.Model):
         verbose_name = "comments"
         verbose_name_plural = "comments"
         ordering = ['-date']        
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
