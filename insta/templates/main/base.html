@@ -1,4 +1,4 @@
-{% load bootstrap4 %}
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +12,27 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
-    <title>Document</title>
-    <!-- <style>
+    <script src="https://kit.fontawesome.com/f4fd34c1ac.js"></script>
+  </head>
+    <title>Instagram</title>
+    <style>
     body{
-        background-image: url('https://data.whicdn.com/images/327042346/original.jpg?t=1550815182');
-     
-        background-repeat: round
+        background-color: beige;
     }
-    </style> -->
+    </style>
 </head>
 <body>
+    {% include 'navbar.html' %}
     {% block content %}
 
     {% endblock %}
+    <!-- <div class="container">
+        <ul>
+            <li> <i class="fas fa-home" style="font-size: 48px;"></i></li>
+            <li><i class="fas fa-search" style="font-size: 48px;"></i></li>
+            <li><i class="far fa-heart" style="font-size: 48px;"></i></li>
+            <li><i class="fas fa-user-alt" style="font-size: 48px;"></i></li>
+        </ul>    
+    </div> -->
 </body>
 </html>
