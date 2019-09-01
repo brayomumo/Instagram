@@ -1,16 +1,22 @@
-from django.conf.urls import url,include
-from . import views
 
-urlpatterns = [
-    # url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^$', views.index, name="home"),
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import url
+from .import views
+# from django.urls import path, re_path
+
+
+urlpatterns=[
     url(r'^$', views.timeline, name='allTimelines'),
-    url(r'^signup/$', views.signup, name='signup'),
-    url(r'^accounts/profile/',  views.profile, name="myProfile"),
+    url(r'^profile/', views.find_profile, name='find_profile'),
+    url(r'^image/(\d+)', views.single_image, name='singleImage'),
     url(r'^user/(\d+)', views.user_profile, name='userProfile'),
-    url(r'^image/(\d+)', views.single_post, name='singleImage'),
     url(r'^single_image/likes/(\d+)', views.single_image_like, name="singleImageLike"),
+    url(r'^profile/', views.find_profile, name="findProfile"),
+    url(r'^new/comment/(?P<username>[-_\w.]+)/$', views.new_comment, name="newComment"),
     url(r'^new/status/(?P<username>[-_\w.]+)/$', views.new_status, name="new_status"),
-      # url(r'^login/$', views.login, name='login'),
-    # url(r'^logout/$', views.logout, name='logout'),
+    url(r'^accounts/profile/', views.profile, name="myProfile"),        
+
 ]
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

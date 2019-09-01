@@ -1,8 +1,9 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from tinymce.models import HTMLField
 
 # Create your models here.
+    
 class Profile(models.Model):
     profile_photo = models.ImageField('profile/', null = True)
     bio = models.TextField()
@@ -13,13 +14,15 @@ class Profile(models.Model):
         ordering = ['-last_update']
 
     def __str__(self):
-        return self.user.name
+        return self.user.username
 
     def save_profile(self):
-        return self.save()
+        self.save()
 
     def delete_profile(self):
-        return self.delete()
+        Profile.objects.all().delete()        
+  
+
 
 class Image(models.Model):
     image = models.ImageField(upload_to ='image/', null=True)
@@ -34,6 +37,12 @@ class Image(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()    
 
     @classmethod
     def search_by_user(cls,search_term):
@@ -63,3 +72,4 @@ class Comment(models.Model):
 
     def delete_comment(self):
         self.delete()
+            
