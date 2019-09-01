@@ -35,6 +35,17 @@ class Image(models.Model):
     class Meta:
         ordering = ['-pub_date']
 
+    @classmethod
+    def search_by_user(cls,search_term):
+        images = cls.objects.filter(image_caption__icontains=search_term)
+        return images
+
+    @classmethod
+    def get_image_by_id(cls, image_id):
+        images = cls.objects.get(id=image_id)
+        return images   
+
+
 
 class Comment(models.Model):
     comment = models.CharField(null = True, max_length= 5000, verbose_name = 'name')
