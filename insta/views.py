@@ -78,3 +78,12 @@ def new_comment(request, username):
     else:
         form = NewCommentForm()
     return render(request, 'new_comment.html', {"form":form})
+
+
+@login_required(login_url='/accounts/login/')
+def timeline(request):
+    # current_user = request.user
+    images = Image.objects.order_by('-pub_date')
+    profiles = Profile.objects.order_by('-last_update')
+    comment = Comment.objects.order_by('-date')
+    return render(request, 'timeline.html', {"images":images, "profiles":profiles, "user_profile":user_profile, "comment":comment})
