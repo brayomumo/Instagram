@@ -10,24 +10,27 @@
           <div class="logoname" style="display:inline">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" alt="" style="width:135px">
           </div>
-          <ul class="nav nav-right">
+        
             <form class="form-group" action="{% url 'find_profile' %}" method="post" style="padding: 8px; text-align: center;border-radius: 8px;border: 2px solid #ddd;outline: 0;margin-right:400px; display:inline" role="search">
               {% csrf_token %}
               <input type="text" name="images" placeholder="Search" style="border:none; padding:10px; background-color:inherit">
             </form>
             {% if user.is_authenticated %}
             <div class="iconns" style="font-size:30px; display:inline">
-                <a href="/">
-              <a href="{% url 'new_status' user.username %}">
+                <a href="/" style="padding: 20px;">
+                    <i class="fas fa-home" style="font-size: 30px;"></i>
+                </a>
+              <a href="{% url 'new_status' user.username %}" style="padding: 20px;">
                     <i class="far fa-clone" style="font-size: 30px;"></i>
               </a>
               <a href="{% url 'myProfile' %}">
                     <i class="fas fa-user-alt" style="font-size: 30px;"></i>
               </a>
-              <a href="/logout">
-                <i class="material-icons" style="font-size:40px">lock_open</i>
+              <a href="/logout" style="padding: 20px;">
+                <i class="fas fa-allergies" style="font-size: 30px;"></i>
+               
               </a>
-          </ul>
+         
           {% else %}
           <li>
             <a href="/accounts/login"><i class="material-icons" style="font-size:40px">lock_outline</i></a>
