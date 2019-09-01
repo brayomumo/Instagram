@@ -3,7 +3,8 @@
 
         <div class="container">
     
-          <h1 class="logo"><a href="/"><img src="https://seeklogo.com/images/I/instagram-new-2016-glyph-logo-84CB825424-seeklogo.com.png" alt="" style="width:35px">
+          <h1 class="logo"><a href="/">
+            <img src="https://seeklogo.com/images/I/instagram-new-2016-glyph-logo-84CB825424-seeklogo.com.png" alt="" style="width:35px">
           </a>
         </h1>
           <div class="logoname" style="display:inline">
@@ -15,12 +16,13 @@
               <input type="text" name="images" placeholder="Search" style="border:none; padding:10px; background-color:inherit">
             </form>
             {% if user.is_authenticated %}
-            <div class="iconns" style="font-size:40px; display:inline">
+            <div class="iconns" style="font-size:30px; display:inline">
+                <a href="/">
               <a href="{% url 'new_status' user.username %}">
-            <i class="material-icons" style="font-size:40px">add</i>
+                    <i class="far fa-clone" style="font-size: 30px;"></i>
               </a>
               <a href="{% url 'myProfile' %}">
-                <i class="material-icons" style="font-size:40px">perm_identity</i>
+                    <i class="fas fa-user-alt" style="font-size: 30px;"></i>
               </a>
               <a href="/logout">
                 <i class="material-icons" style="font-size:40px">lock_open</i>
