@@ -44,4 +44,37 @@ def single_post(request, image_id):
     image = Image.objects.filter(id = image_id)
     return render(request, "single_post.html", {"image":image})
 
-    
+
+@login_required(login_url = '/accounts/login')
+def single_image_like(request, image_id):
+    image = Image.objects.get(id=image_id)
+    image.likes = image.likes + 1
+    image.save()
+    return redirect('allTimelines')
+
+def find_profile(request):
+    if 'image' in request.GET and request.GET["image"]:
+        search_term = request.GET.get("image")
+        searched_images = Image.search_by_user(search_term)
+        message = f"{search_term}"
+        return render(request, 'user_profile.html',{"message":message,"image": searched_images})
+
+    else:
+        message = "You haven't searched for any term yet"
+        return render(request, 'single_image.html',{"message":message}) 
+
+
+@login_required(login_url='/accounts/login/')
+def new_comment(request, username):
+    current_user =request.user
+    username = current_user.username
+    if request.method =='POST':
+        form = NewCommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save()
+            comment.user = request.user
+            comment.save()
+        return redirect('allTimelines')
+    else:
+        form = NewCommentForm()
+    return render(request, 'new_comment.html', {"form":form})
