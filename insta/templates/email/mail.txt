@@ -1,0 +1,4 @@
+
+Hello {{name}}
+
+Welcome to Instagram share the world with your friends,family and the ones you love
