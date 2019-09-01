@@ -35,3 +35,10 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True, null=True)
     user = models.ForeignKey(User, null=True)
     image = models.ForeignKey(Image, null= True)
+
+    class Meta:
+        verbose_name = "comments"
+        verbose_name_plural = "comments"
+
+    class Meta:
+        ordering = ['-date']        
