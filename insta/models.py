@@ -28,7 +28,7 @@ class Image(models.Model):
     image = models.ImageField(upload_to ='image/', null=True)
     image_name = models.CharField(max_length =30, null=True)
     image_caption = models.TextField(null=True)
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(User)
     profile = models.ForeignKey(Profile)
     likes = models.IntegerField(default=0)
     pub_date = models.DateTimeField(auto_now_add=True)
