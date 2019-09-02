@@ -15,12 +15,12 @@ def timeline(request):
 @login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
-    # profile = Profile.objects.get(user_id=current_user.id)
-    images = Image.objects.all().filter(profile_id=current_user.id)
+    profile = Profile.objects.get(user_id=current_user.id)
+    images = Image.objects.filter(profile_id=current_user.id)
     return render(request, 'profile.html', {"images":images, "profile":profile})
 
 @login_required(login_url='/accounts/login/')
-def new_status(request, username):
+def new_post(request, username):
     current_user = request.user
     p = Profile.objects.filter(id=current_user.id).first()
     
