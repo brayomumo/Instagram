@@ -15,7 +15,6 @@ def timeline(request):
 @login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
-    
     # profile = Profile.objects.get(user_id=current_user.id)
     images = Image.objects.all().filter(profile_id=current_user.id)
     return render(request, 'profile.html', {"images":images, "profile":profile})
@@ -23,15 +22,18 @@ def profile(request):
 @login_required(login_url='/accounts/login/')
 def new_status(request, username):
     current_user = request.user
-    username = current_user.username
-    if request.method =='POST':
-        form = NewStatusForm(request.POST, request.FILES)
+    p = Profile.objects.filter(id=current_user.id).first()
+    
+    if request.method == 'POST':
+        form = NewStatusForm(request.POST,request.FILES)
         if form.is_valid():
-            image = request.user
-            image.save()
-        return redirect('allTimelines')
+            post = form.save(commit=False)
+            post.imageuploader_profile= p
+            post.save()
+            return redirect('/')
     else:
-        form = NewStatusForm()
+        form =NewStatusForm
+    
     return render(request, 'new_status.html', {"form":form}) 
 
 #User Profile           
