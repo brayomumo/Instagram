@@ -29,7 +29,6 @@ def new_status(request, username):
         if form.is_valid():
             post = form.save(commit=False)
             post.imageuploader_profile= p
-            post.save()
             return redirect('/')
     else:
         form =NewStatusForm
